@@ -90,3 +90,6 @@ button {
     font-size: 12px;
     padding-bottom: 15px;
 }
+form {
+    width: 300px;
+}
