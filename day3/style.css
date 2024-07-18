@@ -62,14 +62,37 @@
 .container p {
     font-size: 14px;
 }
+.container h1 {
+    text-align: center;
+    margin: 15px;
+}
 button {
     width: 90px;
     height: 25px;
     background-color: black;
     color: white;
-    border-radius: 15px;
+    border-radius: 10px;
     border: none;
 }
-input,select,textarea {
-    width: 100%;
+form {
+    width: 300px;
+    margin: auto;
 }
+input,select,textarea,select {
+    width: 100%;
+    height: 30px;
+    margin: 10px 0px;
+    border: none;
+    box-shadow: rgba(3, 3, 3, .2) -1px -1px 10px ,rgba(3, 3, 3, .2) 10px 10px 10px ;
+}
+.form-group {
+    margin: 10px 0;
+}
+textarea {
+    resize: vertical;
+}
+form button {
+    float: right;
+}
+
+
