@@ -20,31 +20,35 @@
         </div>
     </div>
     <div class="container">
-        <div class="profile">
-            <h2>Profile saya</h2>
-            <p>Saya adalah Faisal Yulianto, seorang individu yang berdedikasi dan antusias dalam bidang teknologi. Saat ini, saya sedang fokus untuk memperdalam keterampilan dan pengetahuan dalam pemrograman. Dengan semangat belajar yang tinggi, saya terus mencari cara baru untuk mengembangkan kemampuan teknis saya dan tetap up-to-date dengan perkembangan terbaru di dunia teknologi Saya senang berkolaborasi dalam proyek-proyek inovatif, berbagi pengetahuan dengan sesama, dan mengeksplorasi teknologi baru yang dapat memberikan dampak positif bagi masyarakat. Dengan tekad yang kuat, saya berusaha untuk menjadi profesional yang handal dan terus berkontribusi dalam komunitas teknologi. Saya percaya bahwa pendidikan dan praktik berkelanjutan adalah kunci kesuksesan di bidang ini, sehingga saya selalu mencari kesempatan untuk mengikuti pelatihan dan workshop. Selain itu, saya juga aktif mengikuti forum-forum teknologi dan berpartisipasi dalam hackathon untuk menguji kemampuan dan mendapatkan pengalaman baru. Fokus utama saya saat ini adalah menguasai bahasa pemrograman terbaru dan memahami konsep-konsep seperti kecerdasan buatan, pembelajaran mesin, dan pengembangan aplikasi berbasis web.</p>
-            <div class="contact">
-                <button>Contact</button>
-            <p>Download CV <i class="fa-solid fa-download"></i><p>
+       <h1>Contact</h1>
+       <form>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name">
             </div>
-                <div class="icon">
-                    <a href="">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
-                    <a href="">
-                        <i class="fa-brands fa-linkedin"></i>
-                    </a>
-                    <a href=""><i class="fa-brands fa-facebook"></i>
-                    </a>
-                    <a href=""><i class="fa-brands fa-x"></i>
-                    </a>
-                </div>
-        </div>
-            <div class="card">
-                <img src="assets/profile.jpg" alt="profile" width="100">
-                <h3>Faisal Yulianto</h3>
-                <p>Fullstack Developer</p>   
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email">
             </div>
+            <div class="form-group">
+                <label for="number">Phone</label>
+                <input type="text" id="number">
+            </div>
+            <div class="form-group">
+                <label for="position">position</label>
+                <select name="position" id="position">
+                    <option hidden>Select Option</option>
+                    <option>Frondend</option>
+                    <option>Backend</option>
+                    <option>Fullstack</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea name="message" id="message"></textarea>
+            </div>
+       </form>
+        
     </div>
     <script src="script.js"></script>
 </body>

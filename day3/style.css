@@ -2,21 +2,11 @@
     box-sizing: border-box;
 }
 .container {
-    display: flex;
-    justify-content: space-between;
-    width: 70%;
+    width: 40%;
     margin: 50px auto;
     box-shadow: rgba(3, 3, 3, .2) -1px -1px 10px ,rgba(3, 3, 3, .2) 10px 10px 10px ;
     padding: 50px;
     box-sizing: border-box;
-}
-.contact {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-.contact button{
-    margin-right: 20px;
 }
 .navbar {
     display: flex;
@@ -80,24 +70,6 @@ button {
     border-radius: 15px;
     border: none;
 }
-.card {
-    width: 250px;
-    margin-left: 30px;
-    box-shadow: rgba(3, 3, 3, .2) -1px -1px 10px 
-                ,rgba(3, 3, 3, .2) 1px 1px 10px ;
-}
-.card img {
-    display: block;
-    margin: auto;
-    width: 200px;
-    height: 250px;
-}
-.card h3 {
-    text-align: center;
-    margin-bottom: -10px;
-}
-.card p {
-    text-align: center;
-    font-size: 12px;
-    padding-bottom: 15px;
+input,select,textarea {
+    width: 100%;
 }
