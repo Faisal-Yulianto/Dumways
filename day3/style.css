@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 .container {
-    width: 40%;
+    width: 40%; 
     margin: 50px auto;
     box-shadow: rgba(3, 3, 3, .2) -1px -1px 10px ,rgba(3, 3, 3, .2) 10px 10px 10px ;
     padding: 50px;
@@ -75,7 +75,7 @@ button {
     border: none;
 }
 form {
-    width: 300px;
+    width: 70%;
     margin: auto;
 }
 input,select,textarea,select {
@@ -89,6 +89,7 @@ input,select,textarea,select {
     margin: 10px 0;
 }
 textarea {
+    height: 80px;
     resize: vertical;
 }
 form button {
