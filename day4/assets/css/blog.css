@@ -1,0 +1,188 @@
+* {
+    box-sizing: border-box;
+}
+.container {
+    width: 40%; 
+    margin: 50px auto;
+    box-shadow: rgba(3, 3, 3, .2) -1px -1px 10px ,rgba(3, 3, 3, .2) 10px 10px 10px ;
+    padding: 50px;
+    box-sizing: border-box;
+}
+#page-now{
+    color: black;
+    font-weight: 800;
+}
+.navbar {
+    display: flex;
+    background-color: rgb(255, 51, 0);
+    justify-content: space-between;
+    align-items: center;
+}
+.left img {
+   width: 50px;
+   height: 30px;
+}
+.navbar .left {
+    display: flex;
+    width: 30%;
+    justify-content: center;
+    align-items: center;
+}
+.left ul {
+    display: flex;
+    width: 60%;
+    justify-content: space-evenly;
+}
+.left li {
+    margin-right: 30px;
+    padding-right: 10px;
+    list-style-type: none;
+}
+.left li a {
+    text-decoration: none;
+    color: white;
+    text-align: center;
+}
+.right button.nav {
+        margin: 10px;
+        border-radius: 5px;
+}
+.right {
+    width: 12%;
+}
+button.nav a {
+    text-decoration: none;
+    color: white;
+}
+.icon  {
+    display: flex;
+    justify-content: flex-start;
+    color: black;
+    border-radius: 50%;
+}
+.icon i {
+    color: black;
+    margin: 15px 15px 0 0;
+}
+.container h2 {
+    margin-bottom: -10px;   
+}
+.container p {
+    font-size: 14px;
+}
+.container h1 {
+    text-align: center;
+    margin: 15px;
+}
+button {
+    width: 90px;
+    height: 25px;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    border: none;
+}
+form {
+    width: 70%;
+    margin: auto;
+}
+input,textarea,
+.input-blog-img-group {
+    width: 100%;
+    height: 30px;
+    margin: 10px 0px;
+    border: none;
+    box-shadow: rgba(3, 3, 3, .2) -1px -1px 10px ,rgba(3, 3, 3, .2) 10px 10px 10px ;
+}
+.form-group-date {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.group-start{
+    margin-right: 10px;
+}
+
+.input-blog-img-group label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+.input-blog-img-group p {
+    border-radius: 3px;
+    color: white;
+    background-color: rgb(133, 124, 124);
+    padding: 5px;
+    margin: 2px 3px; 
+}
+.form-group {
+    margin: 10px 0;
+}
+textarea {
+    height: 150px;
+    resize: vertical;
+}
+form button {
+    float: right;
+}
+h1.title {
+    background-color: rgb(236, 243, 250);
+    margin-bottom: -20px;
+    margin-top: 50px;
+    padding: 100px;
+    text-align: center;
+}
+.blog-content {
+    display: flex;
+    margin: 10px auto;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color:  rgb(236, 243, 250);
+}
+
+.content h1 {
+    text-align: center;
+}
+.card {
+    width: 30%;
+    height: 656px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    border-radius: 15px;
+    box-shadow: rgba(3, 3, 3, .2) -1px -1px 10px ,rgba(3, 3, 3, .2) 10px 10px 10px ;
+}
+.card .title h2 {
+    width: 100%;
+    margin-left: 20px;
+    margin-bottom: -15px;
+    font-size: 20px;    
+}
+.card p {
+    font-size: 15px;
+    margin: 20px;
+}
+.card img {
+    border-radius: 15px;
+    width: 368px;
+    margin: 20px;
+}
+.card .desk {
+    width: 100%;
+    height: 30px;
+    word-wrap: break-word;
+    margin: 50px auto;
+}
+
+.grop-button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.grop-button button {
+    margin: 10px;
+    width: 200px;
+    height: 30px;
+}

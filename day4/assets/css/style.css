@@ -19,8 +19,9 @@
     width: 60%;
     justify-content: space-evenly;
 }
-.navbar .left li:nth-child(3) {
+#page-now{
     color: black;
+    font-weight: 800;
 }
 .left li {
     margin-right: 30px;
@@ -35,6 +36,10 @@
 .right button.nav {
         margin: 10px;
         border-radius: 5px;
+}
+button.nav a {
+    text-decoration: none;
+    color: white;
 }
 .right {
     width: 12%;
