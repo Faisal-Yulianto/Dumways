@@ -1,34 +1,33 @@
 let dataBlog = [];
-function addBlog(event){
-    event.preventDefault();
-    let title = document.getElementById("title").value
-    let desk = document.getElementById("desk").value
-    let startDate = document.getElementById("start").value
-    let endDate = document.getElementById("end").value
+function addBlog(event) {
+  event.preventDefault();
+  let title = document.getElementById("title").value;
+  let desk = document.getElementById("desk").value;
+  let startDate = document.getElementById("start").value;
+  let endDate = document.getElementById("end").value;
 
-    let blog = {
-        title,
-        desk,
-        startDate,
-        endDate,
-    }
-    dataBlog.push(blog);
-    renderBlog()
-    document.getElementById("title").value= ""
-    document.getElementById("desk").value=""
-    document.getElementById("start").value=""
-    document.getElementById("end").value=""
+  let blog = {
+    title,
+    desk,
+    startDate,
+    endDate,
+  };
+  dataBlog.push(blog);
+  renderBlog();
+  document.getElementById("title").value = "";
+  document.getElementById("desk").value = "";
+  document.getElementById("start").value = "";
+  document.getElementById("end").value = "";
 }
 function deleteBlog(index) {
-    dataBlog.splice(index, 1);
-    renderBlog();
+  dataBlog.splice(index, 1);
+  renderBlog();
 }
 
-
-function renderBlog(){
-    document.getElementById("content").innerHTML = "";
-        for(let i = 0 ; i<dataBlog.length; i++){
-            document.getElementById("content").innerHTML += `   
+function renderBlog() {
+  document.getElementById("content").innerHTML = "";
+  for (let i = 0; i < dataBlog.length; i++) {
+    document.getElementById("content").innerHTML += `   
                 <div class="card" id="card">
                     <a href="detail.html">
                     <img src="assets/image/produk1.jpg">
@@ -49,9 +48,5 @@ function renderBlog(){
             
                  </div>
        `;
-        }
-
+  }
 }
-
-
-
