@@ -1,62 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="assets/css/blog.css" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/blog.css">
     <title>My project</title>
-  </head>
-  <body>
+</head>
+<body>
     <div class="navbar">
-      <div class="left">
-        <img src="assets/image/brandwhite.png" />
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a id="page-now" href="blog.html">My Project</a></li>
-        </ul>
-      </div>
-      <div class="right">
-        <button class="nav"><a href="contact.html">Contact Me</a></button>
-      </div>
+        <div class="left">
+            <img src="assets/image/brandwhite.png">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a id="page-now" href="blog.html">My Project</a></li>
+            </ul>
+        </div>
+        <div class="right">
+                <button class="nav"><a href="contact.html">Contact Me</a></button>
+        </div>
     </div>
     <div class="container">
-      <h1>Add My Project</h1>
-      <br /><br />
-      <form onsubmit="addBlog(event)">
+       <h1>Add My Project</h1><br><br>
+       <form onsubmit="addBlog(event)">
+            <div class="form-group">
+                <label for="title">Project Name</label>
+                <input type="text" id="title" required>
+            </div>
+            <div class="form-group-date">
+                <div class="group-start">
+                <label for="start">Start Date</label>
+                <input type="date" id="start">
+            </div>
+            <div class="group-end">
+                <label for="end">End Date</label>
+                <input type="date" id="end">
+            </div>
+        </div>
         <div class="form-group">
-          <label for="title">Project Name</label>
-          <input type="text" id="title" required />
+            <label for="desk">Desription</label>
+            <textarea name="desk" id="desk"></textarea>
         </div>
-        <div class="form-group-date">
-          <div class="group-start">
-            <label for="start">Start Date</label>
-            <input type="date" id="start" />
-          </div>
-          <div class="group-end">
-            <label for="end">End Date</label>
-            <input type="date" id="end" />
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="desk">Desription</label>
-          <textarea name="desk" id="desk"></textarea>
-        </div>
-        <label>Upload Image</label>
-        <div class="input-blog-img-group">
-          <label for="input-blog-img"
-            ><p>Choose file</p>
-            <img
-              src="assets/image/attach.png"
-              style="width: 20px; padding: 1px; margin-right: 5px"
-            />
-          </label>
-          <input type="file" id="input-blog-img" hidden />
-        </div>
-        <button type="submit" id="post">Post Project</button>
-      </form>
+                <label>Upload Image</label>
+                <div class="input-blog-img-group">
+                 <label for="input-blog-img"><p>Choose file</p>
+                        <img src="assets/image/attach.png" 
+                    style="width: 20px; padding: 1px; margin-right: 5px;">
+                </label>
+                <input type="file" id="input-blog-img" hidden>
+                 </div>
+            <button type="submit" id="post">Post Project</button>
+       </form>
     </div>
     <h1 class="title">My Project</h1>
-    <div class="blog-content" id="content"></div>
+    <div class="blog-content" id="content">
+    </div>
     <script src="assets/js/blog.js"></script>
-  </body>
+</body>
 </html>
