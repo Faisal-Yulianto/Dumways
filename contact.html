@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/contact.css" />
+    <title>My website</title>
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="left">
+        <img src="assets/image/dumbways.png" />
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="blog.html">My Project</a></li>
+        </ul>
+      </div>
+      <div class="right">
+        <button class="nav"><a href="contact.html">Contact Me</a></button>
+      </div>
+      <div class="ham-nav" id="hamIcon">
+        <i class="fa-solid fa-bars fa-lg"></i>
+      </div>
+    </div>
+        <div class="ham-list" id="hamList">
+            <li id="ham-page-now"><a href="index.html">Home</a></li>
+            <li><a href="blog.html">My Project</a></li>
+            <li><button><a href="contact.html">Contact Me</a></button></li>
+        </div>
+    <div class="container">
+       <h1>Contact</h1>
+       <form>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email">
+            </div>
+            <div class="form-group">
+                <label for="number">Phone</label>
+                <input type="text" id="number">
+            </div>
+            <div class="form-group">
+                <label for="position">Position</label>
+                <select name="position" id="position">
+                    <option hidden>Select Option</option>
+                    <option>Frondend</option>
+                    <option>Backend</option>
+                    <option>Fullstack</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea name="message" id="message"></textarea>
+            </div>
+            <button type="submit" id="submit">Submit</button>
+       </form>
+        
+    </div>
+    <script src="assets/js/contact.js"></script>
+</body>
+</html>
