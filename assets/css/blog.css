@@ -90,6 +90,7 @@ li a#ham-page-now {
     width: 600px; 
     background-color: white;
     margin: 50px auto;
+    border-radius: 10px;
     box-shadow: rgba(3, 3, 3, .2) -1px -1px 10px ,rgba(3, 3, 3, .2) 10px 10px 10px ;
     padding: 50px;
     box-sizing: border-box;
