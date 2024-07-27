@@ -1,138 +1,161 @@
 body {
-    background-color: rgb(207, 211, 212);
+  background-color: rgb(207, 211, 212);
 }
 .navbar {
-    display: flex;
-    background-color: rgb(241, 240, 237);
-    height: 70px;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  background-color: rgb(241, 240, 237);
+  height: 70px;
+  justify-content: space-between;
+  align-items: center;
 }
 .left img {
-   width: 50px;
-   height: 30px;
+  width: 50px;
+  height: 30px;
 }
 .navbar .left {
-    display: flex;
-    margin: 5px 15px;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  margin: 5px 15px;
+  justify-content: center;
+  align-items: center;
 }
 .left ul {
-    display: flex;
-    justify-content: space-evenly;
+  display: flex;
+  justify-content: space-evenly;
 }
-#page-now{
-    color: black;
-    font-weight: bold;
+#page-now {
+  color: black;
+  font-weight: bold;
 }
 .left li {
-    margin-right: 30px;
-    padding-right: 10px;
-    list-style-type: none;
+  margin-right: 30px;
+  padding-right: 10px;
+  list-style-type: none;
 }
 .left li a {
-    text-decoration: none;
-    color: black;
-    text-align: center;
+  text-decoration: none;
+  color: black;
+  text-align: center;
 }
 .right button.nav {
-    border-radius: 5px;
-    margin-right: 15px;
-    background-color: black;
-    width: 90px;
-    height: 25px;
+  border-radius: 5px;
+  margin-right: 15px;
+  background-color: black;
+  width: 90px;
+  height: 25px;
 }
 button.nav a {
-    text-decoration: none;
-    color: white;
+  text-decoration: none;
+  color: white;
 }
 .ham-nav {
-    display: none;
-    padding: 5px;
-    border-radius: 4px;
-    margin-right: 20px;
+  display: none;
+  padding: 5px;
+  border-radius: 4px;
+  margin-right: 20px;
 }
 li#ham-page-now {
-    font-weight: bold;
+  font-weight: bold;
 }
 .ham-list {
-    display: none;
-    padding: 10px;
-    background-color: rgb(195, 199, 199);
+  display: none;
+  padding: 10px;
+  background-color: rgb(195, 199, 199);
 }
 .ham-list .show {
-    display: block;
+  display: block;
 }
 
 .ham-list li {
-    height: 25px;
-    padding: 5px;
-    text-align: center;
-    list-style-type: none;
+  height: 25px;
+  padding: 5px;
+  text-align: center;
+  list-style-type: none;
 }
 .ham-list li button {
-    background-color: black;
-    border: none;
-    padding: 5px;
-    border-radius: 5px;
+  background-color: black;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
 }
 .ham-list li a {
-    text-decoration: none;
-    color: black;
+  text-decoration: none;
+  color: black;
 }
 .ham-list li button a {
-    color: white;
+  color: white;
 }
 .container {
-    display: flex;
-    background-color: white;
-    justify-content: space-around;
-    flex-direction: row-reverse;
-    width: 60%;
-    margin: 50px auto;
-    border-radius: 10px;
-    box-shadow: rgba(3, 3, 3, .2) -1px -1px 10px ,rgba(3, 3, 3, .2) 10px 10px 10px ;
-    padding: 20px;
-    word-wrap: break-word;
-    box-sizing: border-box;
+  background-color: white;
+  justify-content: space-around;
+  flex-direction: row-reverse;
+  margin: 50px auto;
+  border-radius: 10px;
+  box-shadow: rgba(3, 3, 3, 0.2) -1px -1px 10px,
+    rgba(3, 3, 3, 0.2) 10px 10px 10px;
+  padding: 20px;
+  word-wrap: break-word;
+  box-sizing: border-box;
+}
+.container h1 {
+  text-align: center;
+}
+.card-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 40px;
+}
+.card {
+  width: 400px;
+  height: max-content;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: rgba(3, 3, 3, 0.2) -1px -1px 10px,
+    rgba(3, 3, 3, 0.2) 10px 10px 10px;
+  padding: 10px;
+  word-wrap: break-word;
+  box-sizing: border-box;
+}
+.card img {
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+}
+p.author {
+  text-align: end;
 }
 
-@media screen and (max-width : 768px) {
-    .container {
-        width: 80%;
-        flex-direction: column;
-        padding: 50px;
-        justify-content: center;
-    }
-    .icon {
-        justify-content: center;
-    }
-    .contact-cv {
-        display: flex;
-        align-items: center;
-    }
-    .contact-cv button{
-        margin-right: 20px;
-    }
+@media screen and (max-width: 768px) {
+  .container {
+    width: 80%;
+    flex-direction: column;
+    padding: 50px;
+    justify-content: center;
+  }
+  .icon {
+    justify-content: center;
+  }
 }
-@media screen and (max-width : 600px) {
-    .container {
-        width: 90%;
-        flex-direction: column;
-        padding: 50px;
-        justify-content: center;
-    }
-    .navbar .left ul {
-        display: none;
-    }
-    .right button {
-        display: none;
-    }
-    .ham-nav {
-        display: block;
-    }
-    .show {
-        display: block;
-    }
+@media screen and (max-width: 600px) {
+  .container {
+    width: 90%;
+    flex-direction: column;
+    padding: 50px;
+    justify-content: center;
+  }
+  .navbar .left ul {
+    display: none;
+  }
+  .right button {
+    display: none;
+  }
+  .ham-nav {
+    display: block;
+  }
+  .show {
+    display: block;
+  }
+  .card-group {
+    padding: 5px;
+  }
 }

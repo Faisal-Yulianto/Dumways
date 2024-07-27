@@ -224,7 +224,7 @@ h1.title {
     .container {
         width: 90%;
         flex-direction: column;
-        padding: 50px;
+        padding: 50px 20px;
         justify-content: center;
     }
     .navbar .left ul {
