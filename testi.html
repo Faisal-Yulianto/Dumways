@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      rel="shortcut icon"
+      href="assets/image/dumbways.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="assets/css/testi.css" />
+    <title>My website</title>
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="left">
+        <img src="assets/image/dumbways.png" />
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="blog.html">My Project</a></li>
+          <li><a href="testi.html" id="page-now">Testimonial</a></li>
+        </ul>
+      </div>
+      <div class="right">
+        <button class="nav"><a href="contact.html">Contact Me</a></button>
+      </div>
+      <div class="ham-nav" id="hamIcon">
+        <i class="fa-solid fa-bars fa-lg"></i>
+      </div>
+    </div>
+    <div class="ham-list" id="hamList">
+      <li><a href="index.htmlgit ">Home</a></li>
+      <li><a href="blog.html">My Project</a></li>
+      <li id="ham-page-now"><a href="testi.html">Testimonial</a></li>
+      <li>
+        <button><a href="contact.html">Contact Me</a></button>
+      </li>
+    </div>
+    <div class="container">
+      <h1>My Testimonial</h1>
+      <h2>Rating By Star</h2>
+      <div class="Rating">
+          <button onclick="alltesti()">All </i></button>
+          <button onclick="ratingTesti(1)">1 <i class="fa-regular fa-star"></i></button>
+          <button onclick="ratingTesti(2)">2 <i class="fa-regular fa-star"></i></button>
+          <button onclick="ratingTesti(3)">3 <i class="fa-regular fa-star"></i></button>
+          <button onclick="ratingTesti(4)">4 <i class="fa-regular fa-star"></i></button>
+          <button onclick="ratingTesti(5)">5 <i class="fa-regular fa-star"></i></button>
+      </div>
+      <div class="Testimonials">
+        <div class="card-group" id="testi"></div>
+      </div>
+    </div>
+    <script src="assets/js/testi.js"></script>
+  </body>
+</html>

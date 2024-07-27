@@ -1,0 +1,185 @@
+body {
+    background-color: rgb(207, 211, 212);
+}
+.navbar {
+    display: flex;
+    background-color: rgb(241, 240, 237);
+    height: 70px;
+    justify-content: space-between;
+    align-items: center;
+}
+.left img {
+   width: 50px;
+   height: 30px;
+}
+.navbar .left {
+    display: flex;
+    margin: 5px 15px;
+    justify-content: center;
+    align-items: center;
+}
+.left ul {
+    display: flex;
+    justify-content: space-evenly;
+}
+#page-now{
+    color: black;
+    font-weight: bold;
+}
+.left li {
+    margin-right: 30px;
+    padding-right: 10px;
+    list-style-type: none;
+}
+.left li a {
+    text-decoration: none;
+    color: black;
+    text-align: center;
+}
+.right button.nav {
+    border-radius: 5px;
+    margin-right: 15px;
+    background-color: black;
+    width: 90px;
+    height: 25px;
+}
+button.nav a {
+    text-decoration: none;
+    color: white;
+}
+.ham-nav {
+    display: none;
+    padding: 5px;
+    border-radius: 4px;
+    margin-right: 20px;
+}
+li#ham-page-now {
+    font-weight: bold;
+}
+.ham-list {
+    display: none;
+    padding: 10px;
+    background-color: rgb(195, 199, 199);
+}
+.ham-list .show {
+    display: block;
+}
+
+.ham-list li {
+    height: 25px;
+    padding: 5px;
+    text-align: center;
+    list-style-type: none;
+}
+.ham-list li button {
+    background-color: black;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+}
+.ham-list li a {
+    text-decoration: none;
+    color: black;
+}
+.ham-list li button a {
+    color: white;
+}
+.container {
+    display: flex;
+    background-color: white;
+    justify-content: space-around;
+    flex-direction: row-reverse;
+    width: 60%;
+    margin: 50px auto;
+    border-radius: 10px;
+    box-shadow: rgba(3, 3, 3, .2) -1px -1px 10px ,rgba(3, 3, 3, .2) 10px 10px 10px ;
+    padding: 20px;
+    word-wrap: break-word;
+    box-sizing: border-box;
+}
+.desk {
+    width: 100%;
+    margin: 15px;
+    word-wrap: break-word;
+}
+.icon  {
+    display: flex;
+    justify-content: flex-start;
+    color: black;
+}
+.icon i {
+    color: black;
+    margin-right: 10px;
+}
+.container .desk h2 {
+    margin-bottom: -10px;   
+}
+.container .desk p {
+    font-size: 14px;
+
+}
+.contact-cv button {
+    width: 90px;
+    height: 25px;
+    background-color: black;
+    color: white;
+    border-radius: 15px;
+    border: none;
+}
+.card {
+    width: 200px;
+    height: max-content;
+    margin: 20px auto;
+    box-shadow: rgba(3, 3, 3, .2) -1px -1px 10px ,rgba(3, 3, 3, .2) 1px 1px 10px ;
+}
+.card img {
+    width: 200px;
+}
+.card h3 {
+    text-align: center;
+    margin-bottom: -10px;
+}
+.card p {
+    text-align: center;
+    font-size: 12px;
+    padding-bottom: 15px;
+}
+
+@media screen and (max-width : 768px) {
+    .container {
+        width: 80%;
+        flex-direction: column;
+        padding: 50px;
+        justify-content: center;
+    }
+    .icon {
+        justify-content: center;
+    }
+    .contact-cv {
+        display: flex;
+        align-items: center;
+    }
+    .contact-cv button{
+        margin-right: 20px;
+    }
+}
+@media screen and (max-width : 600px) {
+    .container {
+        width: 90%;
+        flex-direction: column;
+        padding: 50px;
+        justify-content: center;
+    }
+    .navbar .left ul {
+        display: none;
+    }
+    .right button {
+        display: none;
+    }
+    .ham-nav {
+        display: block;
+    }
+    .show {
+        display: block;
+    }
+}
