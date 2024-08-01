@@ -7,65 +7,87 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-    <link rel="shortcut icon" href="assets/image/dumbways.png" type="image/x-icon">
-    <link rel="stylesheet" href="assets/css/contact.css" />
+    <link
+      rel="shortcut icon"
+      href="assets/image/dumbways.png"
+      type="image/x-icon"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <style>
+      .icon i {
+        margin-right: 15px;
+      }
+      .container {
+        width: 70%;
+        padding: 20px;
+      }
+      @media (max-width: 991.98px) {
+        .navbar-collapse {
+          text-align: center;
+        }
+        .navbar-nav {
+          flex-direction: column;
+        }
+      }
+    </style>
     <title>My website</title>
   </head>
   <body>
-    <div class="navbar">
-      <div class="left">
-        <img src="assets/image/dumbways.png" />
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="blog.html">My Project</a></li>
-          <li><a href="testi.html">Testimonial</a></li>
-        </ul>
-      </div>
-      <div class="right">
-        <button class="nav"><a href="contact.html">Contact Me</a></button>
-      </div>
-      <div class="ham-nav" id="hamIcon">
-        <i class="fa-solid fa-bars fa-lg"></i>
-      </div>
-    </div>
-        <div class="ham-list" id="hamList">
-            <li id="ham-page-now"><a href="index.html">Home</a></li>
-            <li><a href="blog.html">My Project</a></li>
-            <li><a href="testi.html">Testimonial</a></li>
-            <li><button><a href="contact.html">Contact Me</a></button></li>
+    <nav
+      class="navbar navbar-expand-lg bg-dark-subtle text-dark-emphasis p-3 m-1"
+    >
+      <div class="container-fluid">
+        <img src="assets/image/dumbways.png" alt="" width="50" />
+        <a class="navbar-brand" href="index.html"></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a
+                class="nav-link active fw-bold"
+                aria-current="page"
+                href="index.html"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="blog.html">My Project</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="testi.html">Testimonials</a>
+            </li>
+          </ul>
+          <form>
+            <a class="btn btn-dark" href="contact.html" role="button">
+              Contact Me
+            </a>
+          </form>
         </div>
-    <div class="container">
-       <h1>Contact</h1>
-       <form>
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email">
-            </div>
-            <div class="form-group">
-                <label for="number">Phone</label>
-                <input type="text" id="number">
-            </div>
-            <div class="form-group">
-                <label for="position">Position</label>
-                <select name="position" id="position">
-                    <option hidden>Select Option</option>
-                    <option>Frondend</option>
-                    <option>Backend</option>
-                    <option>Fullstack</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="message">Message</label>
-                <textarea name="message" id="message"></textarea>
-            </div>
-            <button type="submit" id="submit">Submit</button>
-       </form>
-        
+      </div>
+    </nav>
+    <div class="container shadow p-3 mb-5 bg-body-tertiary rounded">
+     
     </div>
-    <script src="assets/js/contact.js"></script>
-</body>
+    <script src="assets/js/index.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
