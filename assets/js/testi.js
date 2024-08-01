@@ -1,9 +1,3 @@
-// ham-button
-const btn = document.getElementById("hamIcon");
-const navHam = document.getElementById("hamList");
-btn.addEventListener("click", function () {
-  navHam.classList.toggle("show");
-});
 
 const fetchData = async () => {
   try {
@@ -20,11 +14,13 @@ async function alltesti() {
   const testimonials = await fetchData();
   let testiShow = "";
   testimonials.forEach((testimonial) => {
-      testiShow += ` <div class="card">
-              <img src="${testimonial.image}" alt="Testimonial Image">
-              <p class="content">${testimonial.content}</p>
-              <p class="author">${testimonial.author}</p>
-               </div> `;
+      testiShow += ` <div class="card p-3 m-3" style="width: 25rem; ">
+        <img src="${testimonial.image}" class="card-img-top" style="height: 15rem;>
+        <div class="card-body">
+          <p class="card-text">${testimonial.content}</p>
+          <p class="card-text text-end">${testimonial.author}</p>
+        </div>
+      </div> `;
   });
   document.getElementById("testi").innerHTML = testiShow;
 }
@@ -34,11 +30,14 @@ async function ratingTesti(rating) {
   const filterRating = testimonials.filter(testimonial => testimonial.rating == rating);
   let ratingShow = "";
   filterRating.forEach(testimonial => {
-      ratingShow += ` <div class="card">
-              <img src="${testimonial.image}" alt="Testimonial Image">
-              <p class="content">${testimonial.content}</p>
-              <p class="author">${testimonial.author}</p>
-               </div> `;
+      ratingShow += ` <div class="card p-3 m-3" style="width: 25rem;">
+        <img src="${testimonial.image}" class="card-img-top" style="height: 15rem;>
+        <div class="card-body">
+          <p class="card-text">${testimonial.content}</p>
+          <p class="card-text text-end">${testimonial.author}</p>
+        </div>
+      </div>
+ `;
   });
   document.getElementById("testi").innerHTML = ratingShow;
 }
