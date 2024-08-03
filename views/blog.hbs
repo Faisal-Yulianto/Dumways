@@ -19,6 +19,17 @@
       crossorigin="anonymous"
     />
     <style>
+      .container {
+        width: 70%;
+        padding: 20px 100px;
+      }
+      .input-group {
+        display: flex;
+        gap: 1rem;
+      }
+      .input-group .form-group {
+        flex: 1;
+      }
       @media (max-width: 991.98px) {
         .navbar-collapse {
           text-align: center;
@@ -28,12 +39,6 @@
         }
       }
       @media (max-width: 600px) {
-        .navbar-collapse {
-          text-align: center;
-        }
-        .navbar-nav {
-          flex-direction: column;
-        }
         .container {
           width: 80%;
           padding: 10px;
@@ -48,7 +53,7 @@
     >
       <div class="container-fluid">
         <img src="assets/image/dumbways.png" alt="" width="50" />
-        <a class="navbar-brand" href="index.html"></a>
+        <a class="navbar-brand" href="/"></a>
         <button
           class="navbar-toggler"
           type="button"
@@ -63,17 +68,17 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item p-3">
-              <a class="nav-link" aria-current="page" href="index.html">Home</a>
+              <a class="nav-link" aria-current="page" href="/">Home</a>
             </li>
             <li class="nav-item p-3">
-              <a class="nav-link" href="blog.html">My Project</a>
+              <a class="nav-link  fw-bold" href="blog">My Project</a>
             </li>
             <li class="nav-item p-3">
-              <a class="nav-link fw-bold" href="testi.html">Testimonials</a>
+              <a class="nav-link " href="testi">Testimonials</a>
             </li>
           </ul>
           <form>
-            <a class="btn btn-dark" href="contact.html" role="button">
+            <a class="btn btn-dark" href="contact" role="button">
               Contact Me
             </a>
           </form>
@@ -81,21 +86,34 @@
       </div>
     </nav>
     <div class="container shadow bg-body-tertiary rounded">
-      <h1 class="text-center p-5">Testimonials</h1>
-      <h2 class="text-center pb-3 ">Rating By Star</h2>
-      <div class="rating text-center">
-        <button onclick= alltesti() type="button"  class="btn btn-dark">All</button>
-        <button onclick= ratingTesti(1) type="button" class="btn btn-dark">1 <i class="fa-regular fa-star"></i></button>
-        <button onclick= ratingTesti(2) type="button" class="btn btn-dark">2 <i class="fa-regular fa-star"></i></button>
-        <button onclick= ratingTesti(3) type="button" class="btn btn-dark">3 <i class="fa-regular fa-star"></i></button>
-        <button onclick= ratingTesti(4) type="button" class="btn btn-dark">4 <i class="fa-regular fa-star"></i></button>
-        <button onclick= ratingTesti(5) type="button" class="btn btn-dark">5 <i class="fa-regular fa-star"></i></button>
-      </div>
-      <div class="group-card d-flex justify-content-center flex-wrap pb-5" id="testi">
-      
+      <h1 class="text-center pt-5">Add My Project</h1>
+      <form class="p-5">
+        <div class="mb-3">
+          <label for="name" class="form-label">Project Name</label>
+          <input type="text" class="form-control" id="name" />
+        </div>
+        <div class="input-group mb-3">
+          <div class="form-group">
+            <label for="start" class="form-label">Start Date</label>
+            <input type="date" class="form-control" id="start">
+          </div>
+          <div class="form-group">
+            <label for="end" class="form-label">End Date</label>
+            <input type="date" class="form-control" id="end">
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="message" class="form-label">Description</label>
+          <textarea class="form-control" id="message" rows="10"></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="formFile" class="form-label">Upload Image</label>
+          <input class="form-control" type="file" id="formFile">
+        </div>
+        <button type="submit" class="btn btn-dark float-end" id="submit">Post Project</button>
+      </form>
     </div>
-    </div>
-    <script src="assets/js/testi.js"></script>
+    <script src="assets/js/blog.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
