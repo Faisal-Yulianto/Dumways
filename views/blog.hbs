@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -19,31 +18,11 @@
       crossorigin="anonymous"
     />
     <style>
-      .container {
-        width: 70%;
-        padding: 20px 100px;
-      }
-      .input-group {
-        display: flex;
-        gap: 1rem;
-      }
-      .input-group .form-group {
-        flex: 1;
-      }
-      @media (max-width: 991.98px) {
-        .navbar-collapse {
-          text-align: center;
-        }
-        .navbar-nav {
-          flex-direction: column;
-        }
-      }
-      @media (max-width: 600px) {
-        .container {
-          width: 80%;
-          padding: 10px;
-        }
-      }
+      .container { width: 70%; padding: 20px 100px; } .input-group { display:
+      flex; gap: 1rem; } .input-group .form-group { flex: 1; } @media
+      (max-width: 991.98px) { .navbar-collapse { text-align: center; }
+      .navbar-nav { flex-direction: column; } } @media (max-width: 600px) {
+      .container { width: 80%; padding: 10px; } }
     </style>
     <title>My website</title>
   </head>
@@ -71,10 +50,10 @@
               <a class="nav-link" aria-current="page" href="/">Home</a>
             </li>
             <li class="nav-item p-3">
-              <a class="nav-link  fw-bold" href="blog">My Project</a>
+              <a class="nav-link fw-bold" href="blog">My Project</a>
             </li>
             <li class="nav-item p-3">
-              <a class="nav-link " href="testi">Testimonials</a>
+              <a class="nav-link" href="testi">Testimonials</a>
             </li>
           </ul>
           <form>
@@ -87,33 +66,45 @@
     </nav>
     <div class="container shadow bg-body-tertiary rounded">
       <h1 class="text-center pt-5">Add My Project</h1>
-      <form class="p-5">
+      <form
+        class="p-5"
+        id="projectform"
+        method="post"
+        action="/blog"
+        enctype="multipart/form-data"
+      >
         <div class="mb-3">
           <label for="name" class="form-label">Project Name</label>
-          <input type="text" class="form-control" id="name" />
+          <input type="text" class="form-control" id="name" name="title" />
         </div>
         <div class="input-group mb-3">
           <div class="form-group">
             <label for="start" class="form-label">Start Date</label>
-            <input type="date" class="form-control" id="start">
+            <input type="date" class="form-control" id="start" name="start" />
           </div>
           <div class="form-group">
             <label for="end" class="form-label">End Date</label>
-            <input type="date" class="form-control" id="end">
+            <input type="date" class="form-control" id="end" name="end" />
           </div>
         </div>
         <div class="mb-3">
           <label for="message" class="form-label">Description</label>
-          <textarea class="form-control" id="message" rows="10"></textarea>
+          <textarea
+            class="form-control"
+            id="desk"
+            rows="10"
+            name="desk"
+          ></textarea>
         </div>
         <div class="mb-3">
           <label for="formFile" class="form-label">Upload Image</label>
-          <input class="form-control" type="file" id="formFile">
+          <input class="form-control" type="file" id="image" name="image" />
         </div>
-        <button type="submit" class="btn btn-dark float-end" id="submit">Post Project</button>
+        <button type="submit" class="btn btn-dark float-end" id="submit">Post
+          Project</button>
       </form>
     </div>
-    <script src="assets/js/blog.js"></script>
+    <script src="/assets/js/blog.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
