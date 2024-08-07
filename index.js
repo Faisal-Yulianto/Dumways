@@ -17,6 +17,7 @@ app.set("views", path.join(__dirname, "views"));
 
 // Setup folder statis
 app.use("/assets", express.static("assets"));
+app.use(express.json());
 
 // Middleware untuk parsing form data
 app.use(express.urlencoded({ extended: false }));
@@ -99,6 +100,12 @@ app.get("/detail/:id", async (req, res) => {
     res.status(404).send("Project tidak ditemukan");
   }
 });
+app.get("/register", (req, res) => {
+  res.render("register");
+});
+app.get("/login", (req, res) => {
+  res.render("login");
+});
 app.get("/logout", (req, res) => {
   req.session.destroy((err) => {
     if (err) {
@@ -107,18 +114,18 @@ app.get("/logout", (req, res) => {
     res.redirect("/login");
   });
 });
-app.get("/register", (req, res) => {
-  res.render("register");
-});
-app.get("/login", (req, res) => {
-  res.render("login");
-});
 app.post("/register", async (req, res) => {
-  const { username, password } = req.body;
+  const { email, password,username } = req.body;
   const hashedPassword = await bcrypt.hash(password, 10);
   try {
+    // Cek apakah email sudah terdaftar
+    const existingUser = await User.findOne({ where: { email } });
+    if (existingUser) {
+      return res.status(400).send("Email sudah pernah dipakai.");
+    }
     await User.create({
       username,
+      email,
       password: hashedPassword
     });
     res.redirect("/login");
@@ -127,8 +134,8 @@ app.post("/register", async (req, res) => {
   }
 });
 app.post("/login", async (req, res) => {
-  const { username, password } = req.body;
-  const user = await User.findOne({ where: { username } });
+  const { email, password } = req.body;
+  const user = await User.findOne({ where: { email } });
   if (user && await bcrypt.compare(password, user.password)) {
     req.session.userId = user.id;
     res.redirect("/");
