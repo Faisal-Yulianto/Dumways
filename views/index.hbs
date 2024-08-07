@@ -58,6 +58,9 @@
             <a class="btn btn-dark" href="contact" role="button">
               Contact Me
             </a>
+            <a class="btn btn-dark" href="login" role="button">
+              Login
+            </a>
           </form>
         </div>
       </div>
@@ -116,7 +119,7 @@
       <div class="my-project d-flex justify-content-center flex-wrap">
         {{#each adblog}}
           <div class="card m-2" style="width: 25rem; max-height : 700px">
-            <a href="/detail/{{@index}}">
+            <a href="/detail/{{this.id}}">
               <img
                 src="{{this.image}}"
                 class="card-img-top p-2"
@@ -125,7 +128,8 @@
             </a>
             <div class="card-body" style="height: 300px;">
               <h5 class="card-title">{{this.title}}</h5>
-              <p><h5>Duration: </h5>{{this.duration}}</p>
+              <p>{{this.start}} - {{this.end}}</p>
+              <p>Duration : {{this.duration}}</p>
               <div
                 class="desk overflow-y-auto p-2 rounded"
                 style="height: 120px; background-color : rgb(228, 222, 222)"
@@ -134,11 +138,11 @@
               </div>
               <div class="button-group d-flex justify-content-center">
                 <a
-                  href="/edit/{{@index}}"
+                  href="/edit/{{this.id}}"
                   class="btn btn-dark m-1 col-6"
                 >Edit</a>
                 <form
-                  action="/delete/{{@index}}"
+                  action="/delete/{{this.id}}"
                   method="post"
                   class="m-1 col-6"
                   onsubmit="return confirmDelete()"
