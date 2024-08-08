@@ -1,30 +1,14 @@
 const express = require("express");
 const path = require("path");
-const multer = require("multer");
-const fs = require("fs");
+const upload = require("./middleware/upload")
 const app = express();
 const port = 3000;
 
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "views"));
+
 app.use("/assets", express.static("assets"));
 app.use(express.urlencoded({ extended: false }));
-
-const uploadDir = path.join(__dirname, "assets/uploads");
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
-}
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "assets/uploads/");
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + "-" + file.originalname);
-  },
-});
-
-const upload = multer({ storage: storage });
 
 let adblog = [];
 
@@ -35,10 +19,10 @@ const calculateDuration = (start, end) => {
   const durationDays = Math.floor(durationMs / (1000 * 60 * 60 * 24));
 
   if (durationDays < 30) {
-    return `${durationDays} hari lalu`;
+    return `${durationDays} hari`;
   } else if (durationDays < 365) {
     const months = Math.floor(durationDays / 30);
-    return `${months} bulan lalu`;
+    return `${months} bulan `;
   } else {
     const years = Math.floor(durationDays / 365);
     return `${years} tahun lalu`;
