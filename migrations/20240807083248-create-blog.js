@@ -30,6 +30,15 @@ module.exports = {
       duration: {
         type: Sequelize.STRING,
       },
+      userId: { // Tambahkan kolom userId di sini
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Users',
+          key: 'id'
+        },
+        onDelete: 'CASCADE',
+        allowNull: false // Pastikan ini tidak null
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -46,3 +55,4 @@ module.exports = {
     await queryInterface.dropTable('Blogs');
   },
 };
+

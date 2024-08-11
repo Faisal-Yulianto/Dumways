@@ -57,7 +57,7 @@
             </li>
           </ul>
           <form>
-            <a class="btn btn-dark " href="contact" role="button">
+            <a class="btn btn-dark" href="contact" role="button">
               Contact Me
             </a>
           </form>
@@ -100,6 +100,7 @@
           <label for="formFile" class="form-label">Upload Image</label>
           <input class="form-control" type="file" id="image" name="image" />
         </div>
+        <input type="hidden" name="userId" value="<%= userId %>" />
         <button type="submit" class="btn btn-dark float-end" id="submit">Post
           Project</button>
       </form>

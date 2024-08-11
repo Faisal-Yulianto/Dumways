@@ -1,52 +1,51 @@
 // Import module yang diperlukan
 const express = require("express");
 const path = require("path");
-const multer = require("multer");
 const fs = require("fs");
 const { Sequelize } = require("sequelize");
-const { Blog } = require("./models"); // Import Blog model
+const { Blog, User } = require("./models"); // Import Blog dan User models
 const session = require("express-session");
+const flash = require("connect-flash");
 const bcrypt = require("bcrypt");
-const { User } = require("./models");
+const upload = require("./middleware/upload");
 const app = express();
 const port = 3000;
 
-// Setup view engine dan folder views
-app.set("view engine", "hbs");
-app.set("views", path.join(__dirname, "views"));
+// --- Setup ---
+app.set("view engine", "hbs"); // Set view engine to Handlebars
+app.set("views", path.join(__dirname, "views")); // Set views directory
 
-// Setup folder statis
+// Setup folder statis untuk assets
 app.use("/assets", express.static("assets"));
-app.use(express.json());
+app.use(express.json()); // Middleware untuk parsing JSON
+app.use(express.urlencoded({ extended: false })); // Middleware untuk parsing form data
 
-// Middleware untuk parsing form data
-app.use(express.urlencoded({ extended: false }));
+// Setup session middleware
+app.use(
+  session({
+    secret: "your_secret_key", // Kunci rahasia untuk session
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
-app.use(session({
-  secret: 'your_secret_key',
-  resave: false,
-  saveUninitialized: false
-}));
+// Setup flash middleware
+app.use(flash());
 
-// Buat folder untuk upload jika belum ada
-const uploadDir = path.join(__dirname, "assets/uploads");
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
-}
-
-// Konfigurasi multer untuk penyimpanan file
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "assets/uploads/");
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + "-" + file.originalname);
-  },
+// Middleware untuk menyimpan flash message di local variables
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash("success_msg");
+  res.locals.error_msg = req.flash("error_msg");
+  next();
 });
 
-const upload = multer({ storage: storage });
-
-// Fungsi untuk menghitung durasi antara dua tanggal
+// --- Helper Functions ---
+/**
+ * Menghitung durasi antara dua tanggal.
+ * @param {Date} start - Tanggal mulai.
+ * @param {Date} end - Tanggal akhir.
+ * @returns {string} - Durasi dalam hari, bulan, atau tahun.
+ */
 const calculateDuration = (start, end) => {
   const startDate = new Date(start);
   const endDate = new Date(end);
@@ -64,9 +63,23 @@ const calculateDuration = (start, end) => {
   }
 };
 
+// --- Routes ---
+
 // Rute untuk menampilkan semua blog di halaman utama
 app.get("/", async (req, res) => {
-  const adblog = await Blog.findAll();
+  let adblog;
+  if (req.session.userId) {
+    // Jika user login, tampilkan proyek yang dibuat oleh user tersebut
+    adblog = await Blog.findAll({
+      where: { userId: req.session.userId },
+      include: [{ model: User, as: 'author' }]
+    });
+  } else {
+    // Jika user tidak login, tampilkan semua proyek
+    adblog = await Blog.findAll({
+      include: [{ model: User, as: 'author' }]
+    });
+  }
   res.render("index", { adblog });
 });
 
@@ -81,6 +94,20 @@ app.get("/blog", async (req, res) => {
   res.render("blog", { adblog });
 });
 
+// Rute untuk menampilkan detail blog berdasarkan id
+app.get("/blog/:id", async (req, res) => {
+  const id = req.params.id;
+  const blog = await Blog.findByPk(id, {
+    include: [{ model: User, as: 'author' }] // Sertakan data user sebagai penulis
+  });
+
+  if (blog) {
+    res.render("blog-detail", { blog });
+  } else {
+    res.status(404).send("Blog tidak ditemukan");
+  }
+});
+
 // Rute untuk menampilkan halaman testimonial
 app.get("/testi", (req, res) => {
   res.render("testi");
@@ -89,23 +116,28 @@ app.get("/testi", (req, res) => {
 // Rute untuk menampilkan detail sebuah blog berdasarkan id
 app.get("/detail/:id", async (req, res) => {
   const id = req.params.id;
-  console.log(`Fetching project with ID: ${id}`);
-  
-  const project = await Blog.findByPk(id);
-  
+  const project = await Blog.findByPk(id, {
+    include: [{ model: User, as: 'author' }] // Sertakan data penulis
+  });
+
   if (project) {
     res.render("detail", { project });
   } else {
-    console.log(`Project with ID: ${id} not found`);
     res.status(404).send("Project tidak ditemukan");
   }
 });
+
+// Rute untuk menampilkan halaman register
 app.get("/register", (req, res) => {
   res.render("register");
 });
+
+// Rute untuk menampilkan halaman login
 app.get("/login", (req, res) => {
   res.render("login");
 });
+
+// Rute untuk logout
 app.get("/logout", (req, res) => {
   req.session.destroy((err) => {
     if (err) {
@@ -114,39 +146,72 @@ app.get("/logout", (req, res) => {
     res.redirect("/login");
   });
 });
+
+// Rute untuk menampilkan blog berdasarkan userId
+app.get("/user/:userId/blogs", async (req, res) => {
+  const userId = req.params.userId;
+  const userWithBlogs = await User.findByPk(userId, {
+    include: [{
+      model: Blog,
+      as: 'blogs'
+    }]
+  });
+
+  if (userWithBlogs) {
+    res.render("user-blogs", { user: userWithBlogs });
+  } else {
+    res.status(404).send("User tidak ditemukan");
+  }
+});
+
+// Rute untuk registrasi user
 app.post("/register", async (req, res) => {
-  const { email, password,username } = req.body;
+  const { email, password, username } = req.body;
   const hashedPassword = await bcrypt.hash(password, 10);
   try {
-    // Cek apakah email sudah terdaftar
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
-      return res.status(400).send("Email sudah pernah dipakai.");
+      req.flash("error_msg", "Email sudah pernah dipakai.");
+      return res.redirect("/register");
     }
     await User.create({
       username,
       email,
-      password: hashedPassword
+      password: hashedPassword,
     });
+    req.flash("success_msg", "Registrasi berhasil! Silakan login.");
     res.redirect("/login");
   } catch (error) {
-    res.status(500).send("Error registering new user.");
+    req.flash("error_msg", "Error registering new user.");
+    res.redirect("/register");
   }
 });
+
+// Rute untuk login user
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ where: { email } });
-  if (user && await bcrypt.compare(password, user.password)) {
+
+  if (user && (await bcrypt.compare(password, user.password))) {
     req.session.userId = user.id;
+    req.flash("success_msg", "Login berhasil!");
     res.redirect("/");
   } else {
-    res.status(401).send("Invalid username or password.");
+    req.flash("error_msg", "Invalid username or password.");
+    res.redirect("/login");
   }
 });
 
 // Rute untuk menambahkan blog baru
 app.post("/blog", upload.single("image"), async (req, res) => {
   const { title, desk, start, end } = req.body;
+
+  // Pastikan req.session.userId ada
+  if (!req.session.userId) {
+    req.flash("error_msg", "Anda harus login untuk membuat blog.");
+    return res.redirect("/login");
+  }
+
   let blog = {
     title,
     desk,
@@ -154,9 +219,17 @@ app.post("/blog", upload.single("image"), async (req, res) => {
     end,
     image: req.file ? "/assets/uploads/" + req.file.filename : null,
     duration: calculateDuration(start, end),
+    userId: req.session.userId,  // Mengambil userId dari session
   };
-  await Blog.create(blog);
-  res.redirect("/");
+
+  try {
+    await Blog.create(blog);
+    res.redirect("/");
+  } catch (error) {
+    console.error("Error creating blog:", error);
+    req.flash("error_msg", "Error creating blog.");
+    res.redirect("/blog");
+  }
 });
 
 // Rute untuk menampilkan halaman edit sebuah blog berdasarkan id
@@ -171,6 +244,7 @@ app.post("/edit/:id", upload.single("image"), async (req, res) => {
   const id = req.params.id;
   const { title, desk, start, end } = req.body;
   let blog = await Blog.findByPk(id);
+  
   blog.title = title;
   blog.desk = desk;
   blog.start = start;
@@ -189,19 +263,24 @@ app.post("/delete/:id", async (req, res) => {
   await Blog.destroy({ where: { id } });
   res.redirect("/");
 });
+
+// Middleware untuk melindungi rute
 const requireAuth = (req, res, next) => {
   if (!req.session.userId) {
     return res.redirect("/login");
   }
   next();
 };
+
+// Rute yang dilindungi
 app.use("/protected", requireAuth, (req, res) => {
   res.send("This is a protected route.");
 });
 
 // Menjalankan server pada port yang ditentukan
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Server is running on port ${port}`);
 });
+
 
 

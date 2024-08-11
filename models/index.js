@@ -16,6 +16,7 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
+// Mengimpor semua model dari direktori models
 fs
   .readdirSync(__dirname)
   .filter(file => {
@@ -31,6 +32,7 @@ fs
     db[model.name] = model;
   });
 
+// Mengatur asosiasi model jika ada
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
@@ -41,3 +43,4 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 module.exports = db;
+
