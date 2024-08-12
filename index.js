@@ -1,9 +1,10 @@
 // Import module yang diperlukan
 const express = require("express");
 const path = require("path");
+const hbs = require('hbs');
 const fs = require("fs");
 const { Sequelize } = require("sequelize");
-const { Blog, User } = require("./models"); // Import Blog dan User models
+const { Blog, User } = require("./models"); 
 const session = require("express-session");
 const flash = require("connect-flash");
 const bcrypt = require("bcrypt");
@@ -36,6 +37,7 @@ app.use(flash());
 app.use((req, res, next) => {
   res.locals.success_msg = req.flash("success_msg");
   res.locals.error_msg = req.flash("error_msg");
+  res.locals.session = req.session;
   next();
 });
 
@@ -63,6 +65,11 @@ const calculateDuration = (start, end) => {
   }
 };
 
+// --- Register Helper `includes` ---
+hbs.registerHelper('includes', function(array, value) {
+  return array && array.includes(value);
+});
+
 // --- Routes ---
 
 // Rute untuk menampilkan semua blog di halaman utama
@@ -80,6 +87,10 @@ app.get("/", async (req, res) => {
       include: [{ model: User, as: 'author' }]
     });
   }
+  adblog = adblog.map(blog => {
+    blog.technologies = blog.technologies ? blog.technologies.split(',') : [];
+    return blog;
+  });
   res.render("index", { adblog });
 });
 
@@ -102,7 +113,8 @@ app.get("/blog/:id", async (req, res) => {
   });
 
   if (blog) {
-    res.render("blog-detail", { blog });
+    blog.technologies = blog.technologies ? blog.technologies.split(',') : [];
+    res.render("blog-detail", { project: blog });
   } else {
     res.status(404).send("Blog tidak ditemukan");
   }
@@ -121,6 +133,7 @@ app.get("/detail/:id", async (req, res) => {
   });
 
   if (project) {
+    project.technologies = project.technologies ? project.technologies.split(',') : [];
     res.render("detail", { project });
   } else {
     res.status(404).send("Project tidak ditemukan");
@@ -204,9 +217,8 @@ app.post("/login", async (req, res) => {
 
 // Rute untuk menambahkan blog baru
 app.post("/blog", upload.single("image"), async (req, res) => {
-  const { title, desk, start, end } = req.body;
-
-  // Pastikan req.session.userId ada
+  const { title, desk, start, end, technologies } = req.body;
+  const techList = technologies ? technologies.join(',') : '';
   if (!req.session.userId) {
     req.flash("error_msg", "Anda harus login untuk membuat blog.");
     return res.redirect("/login");
@@ -219,6 +231,7 @@ app.post("/blog", upload.single("image"), async (req, res) => {
     end,
     image: req.file ? "/assets/uploads/" + req.file.filename : null,
     duration: calculateDuration(start, end),
+    technologies: techList,
     userId: req.session.userId,  // Mengambil userId dari session
   };
 
@@ -236,25 +249,45 @@ app.post("/blog", upload.single("image"), async (req, res) => {
 app.get("/edit/:id", async (req, res) => {
   const id = req.params.id;
   const project = await Blog.findByPk(id);
-  res.render("edit", { project, id });
+  if (project) {
+    const technologiesArray = project.technologies ? project.technologies.split(',') : [];
+    res.render("edit", { project, technologies: ['node', 'react', 'next', 'typescript'], selectedTechnologies: technologiesArray });
+  } else {
+    res.status(404).send("Project tidak ditemukan");
+  }
 });
 
 // Rute untuk mengupdate blog yang sudah ada
 app.post("/edit/:id", upload.single("image"), async (req, res) => {
   const id = req.params.id;
-  const { title, desk, start, end } = req.body;
-  let blog = await Blog.findByPk(id);
-  
-  blog.title = title;
-  blog.desk = desk;
-  blog.start = start;
-  blog.end = end;
-  if (req.file) {
-    blog.image = "/assets/uploads/" + req.file.filename;
+  const { title, desk, start, end, technologies } = req.body;
+  const techList = technologies ? technologies : [];
+
+  try {
+    let blog = await Blog.findByPk(id);
+    
+    if (!blog) {
+      return res.status(404).send("Blog tidak ditemukan");
+    }
+    
+    blog.title = title;
+    blog.desk = desk;
+    blog.start = start;
+    blog.end = end;
+    blog.technologies = techList.join(','); // Update teknologi
+    blog.duration = calculateDuration(start, end);
+
+    if (req.file) {
+      blog.image = "/assets/uploads/" + req.file.filename;
+    }
+
+    await blog.save();
+    res.redirect("/");
+  } catch (error) {
+    console.error("Error updating blog:", error);
+    req.flash("error_msg", "Error updating blog.");
+    res.redirect(`/edit/${id}`);
   }
-  blog.duration = calculateDuration(start, end);
-  await blog.save();
-  res.redirect("/");
 });
 
 // Rute untuk menghapus blog berdasarkan id
@@ -271,12 +304,6 @@ const requireAuth = (req, res, next) => {
   }
   next();
 };
-
-// Rute yang dilindungi
-app.use("/protected", requireAuth, (req, res) => {
-  res.send("This is a protected route.");
-});
-
 // Menjalankan server pada port yang ditentukan
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

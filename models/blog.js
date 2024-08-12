@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     end: DataTypes.DATE,
     image: DataTypes.STRING,
     duration: DataTypes.STRING,
+    technologies: DataTypes.STRING,  // Kolom baru untuk menyimpan teknologi
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false, // Pastikan ini diatur ke false

@@ -6,6 +6,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
+    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />    
     <link
       rel="shortcut icon"
       href="/assets/image/dumbways.png"
@@ -58,10 +59,14 @@
             <a class="btn btn-dark" href="contact" role="button">
               Contact Me
             </a>
-            <a class="btn btn-dark" href="login" role="button">
-              Login
-            </a>
+            {{#if session.userId}}
+  <a class="btn btn-dark" href="/logout" role="button">Logout</a>
+{{else}}
+  <a class="btn btn-dark" href="/login" role="button">login</a>
+{{/if}}
+
           </form>
+           </a>
         </div>
       </div>
     </nav>
@@ -126,20 +131,27 @@
                 style="height: 400px;"
               />
             </a>
-            <div class="card-body" style="height: 340px;">
+            <div class="card-body" style="height: 380px;">
               <h5 class="card-title">{{this.title}}</h5>
-              <p>Author:
+              <p>Author :
                 {{#if
                   this.author
                 }}{{this.author.username}}{{else}}Unknown{{/if}}</p>
               <p>{{this.start}} - {{this.end}}</p>
               <p>Duration : {{this.duration}}</p>
+              <div class="technologies pb-3">
+          {{#each this.technologies}}
+            <i class="devicon--original-wordmark"></i>
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/{{this}}/{{this}}-original.svg" width="25"/>
+          {{/each}}
+              </div>
               <div
                 class="desk overflow-y-auto p-2 rounded"
                 style="height: 120px; background-color : rgb(228, 222, 222)"
               >
                 <p class="card-text">{{this.desk}}</p>
               </div>
+              
               <div class="button-group d-flex justify-content-center">
                 <a
                   href="/edit/{{this.id}}"

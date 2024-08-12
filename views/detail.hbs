@@ -38,22 +38,24 @@
             class="col-md-4 border border-0 rounded shadow bg-body-tertiary rounded"
             style="max-width: 100%; height: max-content"
           >
-            <img src="{{project.image}}" class="img-fluid rounded-start" />
+            <img src="{{project.image}}" class="img-fluid rounded-start"/ style="height: 500px;">
           </div>
           <div class="col-md-8">
             <div class="card-body">
               <h5 class="card-title">{{project.title}}</h5>
-              <p>Author:
+              <p>Author :
                 {{#if
                   project.author
                 }}{{project.author.username}}{{else}}Unknown{{/if}}</p>
-              <p>Start Date : {{project.start}}</p>
-              <p>End Date : {{project.end}}</p>
-              <p>Durasi : {{project.duration}}</p>
-              <p class="card-text">
-                {{project.desk}}
-              </p>
+                <p>Technologies :   {{#each project.technologies}}
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/{{this}}/{{this}}-original.svg"width="25"/ class="m-2">
+                {{/each}}</p>
+              <p><i class="fa-solid fa-calendar-days" ></i>  {{project.start}} - {{project.end}}</p>
+              <p><i class="fa-solid fa-clock "></i> {{project.duration}}</p>
             </div>
+            <p class="card-text p-2">
+                {{project.desk}}
+      </p>
           </div>
         </div>
       </div>
