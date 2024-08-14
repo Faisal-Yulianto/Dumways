@@ -1,4 +1,4 @@
-// Import module yang diperlukan
+// Import module 
 const express = require("express");
 const path = require("path");
 const hbs = require('hbs');
@@ -13,18 +13,18 @@ const app = express();
 const port = 3000;
 
 // --- Setup ---
-app.set("view engine", "hbs"); // Set view engine to Handlebars
-app.set("views", path.join(__dirname, "views")); // Set views directory
+app.set("view engine", "hbs"); 
+app.set("views", path.join(__dirname, "views")); 
 
 // Setup folder statis untuk assets
 app.use("/assets", express.static("assets"));
-app.use(express.json()); // Middleware untuk parsing JSON
-app.use(express.urlencoded({ extended: false })); // Middleware untuk parsing form data
+app.use(express.json()); 
+app.use(express.urlencoded({ extended: false })); 
 
 // Setup session middleware
 app.use(
   session({
-    secret: "your_secret_key", // Kunci rahasia untuk session
+    secret: "your_secret_key", 
     resave: false,
     saveUninitialized: false,
   })
@@ -109,7 +109,7 @@ app.get("/blog", async (req, res) => {
 app.get("/blog/:id", async (req, res) => {
   const id = req.params.id;
   const blog = await Blog.findByPk(id, {
-    include: [{ model: User, as: 'author' }] // Sertakan data user sebagai penulis
+    include: [{ model: User, as: 'author' }] 
   });
 
   if (blog) {
@@ -129,7 +129,7 @@ app.get("/testi", (req, res) => {
 app.get("/detail/:id", async (req, res) => {
   const id = req.params.id;
   const project = await Blog.findByPk(id, {
-    include: [{ model: User, as: 'author' }] // Sertakan data penulis
+    include: [{ model: User, as: 'author' }] 
   });
 
   if (project) {
@@ -232,7 +232,7 @@ app.post("/blog", upload.single("image"), async (req, res) => {
     image: req.file ? "/assets/uploads/" + req.file.filename : null,
     duration: calculateDuration(start, end),
     technologies: techList,
-    userId: req.session.userId,  // Mengambil userId dari session
+    userId: req.session.userId,  
   };
 
   try {
@@ -274,7 +274,7 @@ app.post("/edit/:id", upload.single("image"), async (req, res) => {
     blog.desk = desk;
     blog.start = start;
     blog.end = end;
-    blog.technologies = techList.join(','); // Update teknologi
+    blog.technologies = techList.join(','); 
     blog.duration = calculateDuration(start, end);
 
     if (req.file) {
